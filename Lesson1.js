@@ -1,248 +1,249 @@
-// =========================
-// CURRENT YEAR
-// =========================
+```javascript
+// ==========================================
+// INITIALIZE AFTER PAGE LOAD
+// ==========================================
 
-document.getElementById("year").textContent =
-new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", () => {
 
+    // ==========================================
+    // CURRENT YEAR
+    // ==========================================
 
-// =========================
-// SMOOTH NAVIGATION
-// =========================
+    const yearElement = document.getElementById("year");
 
-document.querySelectorAll("nav a")
-.forEach(link => {
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 
-    link.addEventListener("click", function(e){
+    // ==========================================
+    // SMOOTH NAVIGATION
+    // ==========================================
 
-        e.preventDefault();
+    document.querySelectorAll("nav a").forEach(link => {
 
-        document.querySelector(
-            this.getAttribute("href")
-        ).scrollIntoView({
-            behavior:"smooth"
+        link.addEventListener("click", function (e) {
+
+            const targetId = this.getAttribute("href");
+
+            if (targetId && targetId.startsWith("#")) {
+
+                const targetSection =
+                    document.querySelector(targetId);
+
+                if (targetSection) {
+
+                    e.preventDefault();
+
+                    targetSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            }
+
         });
 
     });
 
-});
+    // ==========================================
+    // PUBLICATION SEARCH
+    // ==========================================
 
+    const searchBox =
+        document.getElementById("publicationSearch");
 
-// =========================
-// PUBLICATION SEARCH
-// =========================
+    if (searchBox) {
 
-const searchBox =
-document.getElementById("publicationSearch");
+        searchBox.addEventListener("keyup", function () {
 
-if(searchBox){
+            const filter =
+                this.value.toLowerCase();
 
-searchBox.addEventListener("keyup", function(){
+            const papers =
+                document.querySelectorAll(
+                    ".publications-list li"
+                );
 
-    const filter =
-    this.value.toLowerCase();
+            papers.forEach(paper => {
 
-    const papers =
-    document.querySelectorAll(
-        ".publications-list li"
-    );
+                const text =
+                    paper.textContent.toLowerCase();
 
-    papers.forEach(paper => {
+                paper.style.display =
+                    text.includes(filter)
+                        ? ""
+                        : "none";
 
-        if(
-            paper.textContent
-            .toLowerCase()
-            .includes(filter)
-        ){
-            paper.style.display = "";
-        }
-        else{
-            paper.style.display = "none";
-        }
+            });
 
-    });
+        });
 
-});
+    }
 
-}
+    // ==========================================
+    // DARK MODE
+    // ==========================================
 
+    const themeBtn =
+        document.getElementById("themeBtn");
 
-// =========================
-// DARK MODE
-// =========================
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
 
-const themeBtn =
-document.getElementById("themeBtn");
+    if (themeBtn) {
 
-themeBtn.addEventListener("click", () => {
+        themeBtn.addEventListener("click", () => {
 
-    document.body.classList.toggle(
-        "dark-mode"
-    );
+            document.body.classList.toggle(
+                "dark-mode"
+            );
 
-    if(
-        document.body.classList.contains(
-            "dark-mode"
+            const currentTheme =
+                document.body.classList.contains(
+                    "dark-mode"
+                )
+                    ? "dark"
+                    : "light";
+
+            localStorage.setItem(
+                "theme",
+                currentTheme
+            );
+
+        });
+
+    }
+
+    // ==========================================
+    // SCROLL TO TOP BUTTON
+    // ==========================================
+
+    const topBtn =
+        document.getElementById("topBtn");
+
+    if (topBtn) {
+
+        window.addEventListener("scroll", () => {
+
+            topBtn.style.display =
+                window.scrollY > 400
+                    ? "block"
+                    : "none";
+
+        });
+
+        topBtn.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+    // ==========================================
+    // COPY CITATION BUTTONS
+    // ==========================================
+
+    document
+        .querySelectorAll(
+            ".publications-list li"
         )
-    ){
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-    }
-    else{
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
-    }
+        .forEach(publication => {
 
-});
+            const btn =
+                document.createElement("button");
 
+            btn.textContent =
+                "Copy Citation";
 
-window.addEventListener("load", () => {
+            btn.style.marginLeft = "10px";
 
-    if(
-        localStorage.getItem("theme")
-        === "dark"
-    ){
-        document.body.classList.add(
-            "dark-mode"
-        );
-    }
+            btn.addEventListener(
+                "click",
+                async () => {
 
-});
+                    try {
 
+                        await navigator.clipboard.writeText(
+                            publication.innerText
+                        );
 
-// =========================
-// SCROLL TO TOP BUTTON
-// =========================
+                        alert(
+                            "Citation copied!"
+                        );
 
-const topBtn =
-document.getElementById("topBtn");
+                    } catch (error) {
 
-window.addEventListener("scroll", () => {
+                        console.error(
+                            "Copy failed:",
+                            error
+                        );
 
-    if(window.scrollY > 400){
+                        alert(
+                            "Unable to copy citation."
+                        );
 
-        topBtn.style.display =
-        "block";
+                    }
 
-    }
-    else{
+                }
+            );
 
-        topBtn.style.display =
-        "none";
+            publication.appendChild(btn);
 
-    }
+        });
 
-});
+    // ==========================================
+    // ACTIVE MENU HIGHLIGHT
+    // ==========================================
 
+    const sections =
+        document.querySelectorAll("section");
 
-topBtn.addEventListener("click", () => {
+    const navLinks =
+        document.querySelectorAll("nav a");
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+    window.addEventListener(
+        "scroll",
+        () => {
 
-});
+            let current = "";
 
+            sections.forEach(section => {
 
-// =========================
-// COPY CITATION BUTTONS
-// =========================
+                const sectionTop =
+                    section.offsetTop - 150;
 
-document
-.querySelectorAll(
-".publications-list li"
-)
-.forEach(publication => {
+                if (
+                    window.scrollY >= sectionTop
+                ) {
+                    current =
+                        section.getAttribute("id");
+                }
 
-    const btn =
-    document.createElement(
-        "button"
+            });
+
+            navLinks.forEach(link => {
+
+                link.classList.remove(
+                    "active"
+                );
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + current
+                ) {
+                    link.classList.add(
+                        "active"
+                    );
+                }
+
+            });
+
+        }
     );
 
-    btn.innerText =
-    "Copy Citation";
-
-    btn.style.marginLeft =
-    "10px";
-
-    btn.addEventListener(
-    "click",
-    () => {
-
-        navigator.clipboard.writeText(
-            publication.innerText
-        );
-
-        alert(
-        "Citation copied!"
-        );
-
-    });
-
-    publication.appendChild(btn);
-
 });
-
-
-// =========================
-// ACTIVE MENU
-// =========================
-
-const sections =
-document.querySelectorAll(
-"section"
-);
-
-const navLinks =
-document.querySelectorAll(
-"nav a"
-);
-
-window.addEventListener(
-"scroll",
-() => {
-
-    let current = "";
-
-    sections.forEach(
-    section => {
-
-        const sectionTop =
-        section.offsetTop - 150;
-
-        if(
-        scrollY >= sectionTop
-        ){
-            current =
-            section.getAttribute(
-            "id"
-            );
-        }
-
-    });
-
-    navLinks.forEach(
-    link => {
-
-        link.classList.remove(
-        "active"
-        );
-
-        if(
-        link.getAttribute(
-        "href"
-        ) === "#" + current
-        ){
-            link.classList.add(
-            "active"
-            );
-        }
-
-    });
-
-});
+```

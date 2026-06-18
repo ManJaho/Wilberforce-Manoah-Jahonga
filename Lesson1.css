@@ -1,27 +1,40 @@
-/* Base Global Styles & Background Colors */
+/* ==========================================
+   Global Styles
+========================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     color: #333333;
-    background-color: #f4f7f9; /* Cool, light-blue/gray background tint */
+    background-color: #f4f7f9;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
     max-width: 1100px;
     margin: 30px auto;
     padding: 20px;
-    background-color: #ffffff; /* White background for text contrast blocks */
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Header Section Customization */
+/* ==========================================
+   Header Section
+========================================== */
+
 header {
-    background-color: #0d2c54; /* Cool Deep Academic Navy Blue */
+    background-color: #0d2c54;
     color: #ffffff;
-    padding: 30px 20px 0 20px;
+    padding: 30px 20px 0;
 }
 
 .header-container h1 {
@@ -32,23 +45,26 @@ header {
 }
 
 .header-container .subtitle {
-    margin: 5px 0 20px 0;
+    margin: 5px 0 20px;
     font-size: 1.2em;
-    color: #a3c1ad; /* Soft sage/sky tone for the tagline contrast */
+    color: #a3c1ad;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Connections Block Inside Header Card */
+/* ==========================================
+   Connections Block
+========================================== */
+
 .connections-container {
-    background-color: rgba(255, 255, 255, 0.1); /* Transparent light overlay */
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 25px;
 }
 
 .connections-container h3 {
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     font-size: 1em;
     color: #e6f1fe;
 }
@@ -67,7 +83,7 @@ header {
 }
 
 .connections-list a {
-    color: #64ffda; /* Light cyan highlight color for links over dark background */
+    color: #64ffda;
     text-decoration: none;
 }
 
@@ -75,7 +91,10 @@ header {
     text-decoration: underline;
 }
 
-/* Navigation Bar Layout & Search Area Container */
+/* ==========================================
+   Navigation Bar
+========================================== */
+
 .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -107,7 +126,15 @@ nav ul li a:hover {
     color: #64ffda;
 }
 
-/* Search Bar Styling elements */
+nav a.active {
+    font-weight: bold;
+    border-bottom: 3px solid blue;
+}
+
+/* ==========================================
+   Search Bar
+========================================== */
+
 .search-container form {
     display: flex;
     gap: 5px;
@@ -123,21 +150,25 @@ nav ul li a:hover {
 }
 
 .search-button {
-    background-color: #1a5fb4; /* Stronger accent blue button */
-    color: white;
+    background-color: #1a5fb4;
+    color: #ffffff;
     border: none;
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9em;
     font-weight: 500;
+    transition: background-color 0.2s ease;
 }
 
 .search-button:hover {
     background-color: #3584e4;
 }
 
-/* Page Section & Divider Layout Elements */
+/* ==========================================
+   Sections & Content
+========================================== */
+
 section {
     padding: 25px 10px;
 }
@@ -149,6 +180,10 @@ section h2 {
     margin-top: 0;
 }
 
+.publications-list ul li {
+    margin-bottom: 18px;
+}
+
 hr {
     border: 0;
     height: 1px;
@@ -156,9 +191,9 @@ hr {
     margin: 0;
 }
 
-.publications-list ul li {
-    margin-bottom: 18px;
-}
+/* ==========================================
+   Footer
+========================================== */
 
 footer {
     text-align: center;
@@ -166,33 +201,70 @@ footer {
     color: #666666;
     font-size: 0.85em;
     background-color: #eaeff3;
-}.dark-mode{
-background:#121212;
-color:white;
 }
 
-.dark-mode a{
-color:#66b3ff;
+/* ==========================================
+   Utility Elements
+========================================== */
+
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 999;
 }
 
-#topBtn{
-position:fixed;
-bottom:20px;
-right:20px;
-display:none;
-padding:10px 15px;
-cursor:pointer;
-z-index:999;
+#publicationSearch {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 16px;
 }
 
-#publicationSearch{
-width:100%;
-padding:10px;
-margin:15px 0;
-font-size:16px;
+/* ==========================================
+   Dark Mode
+========================================== */
+
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
 }
 
-nav a.active{
-font-weight:bold;
-border-bottom:3px solid blue;
+.dark-mode main {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background-color: #0a1f3d;
+}
+
+.dark-mode footer {
+    background-color: #1e1e1e;
+    color: #cccccc;
+}
+
+.dark-mode a {
+    color: #66b3ff;
+}
+
+.dark-mode section h2 {
+    color: #66b3ff;
+}
+
+.dark-mode .search-input {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.dark-mode .search-button {
+    background-color: #2f6fed;
+}
+
+.dark-mode .search-button:hover {
+    background-color: #4d84f1;
 }
