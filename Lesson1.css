@@ -1,0 +1,198 @@
+/* Base Global Styles & Background Colors */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333333;
+    background-color: #f4f7f9; /* Cool, light-blue/gray background tint */
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for text contrast blocks */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Section Customization */
+header {
+    background-color: #0d2c54; /* Cool Deep Academic Navy Blue */
+    color: #ffffff;
+    padding: 30px 20px 0 20px;
+}
+
+.header-container h1 {
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-container .subtitle {
+    margin: 5px 0 20px 0;
+    font-size: 1.2em;
+    color: #a3c1ad; /* Soft sage/sky tone for the tagline contrast */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Connections Block Inside Header Card */
+.connections-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent light overlay */
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.connections-container h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #e6f1fe;
+}
+
+.connections-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.connections-list li {
+    font-size: 0.9em;
+}
+
+.connections-list a {
+    color: #64ffda; /* Light cyan highlight color for links over dark background */
+    text-decoration: none;
+}
+
+.connections-list a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Bar Layout & Search Area Container */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95em;
+    padding: 5px 8px;
+    transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+    color: #64ffda;
+}
+
+/* Search Bar Styling elements */
+.search-container form {
+    display: flex;
+    gap: 5px;
+}
+
+.search-input {
+    padding: 6px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    outline: none;
+    width: 180px;
+}
+
+.search-button {
+    background-color: #1a5fb4; /* Stronger accent blue button */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.search-button:hover {
+    background-color: #3584e4;
+}
+
+/* Page Section & Divider Layout Elements */
+section {
+    padding: 25px 10px;
+}
+
+section h2 {
+    color: #0d2c54;
+    border-left: 4px solid #1a5fb4;
+    padding-left: 10px;
+    margin-top: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 0;
+}
+
+.publications-list ul li {
+    margin-bottom: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666666;
+    font-size: 0.85em;
+    background-color: #eaeff3;
+}.dark-mode{
+background:#121212;
+color:white;
+}
+
+.dark-mode a{
+color:#66b3ff;
+}
+
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+display:none;
+padding:10px 15px;
+cursor:pointer;
+z-index:999;
+}
+
+#publicationSearch{
+width:100%;
+padding:10px;
+margin:15px 0;
+font-size:16px;
+}
+
+nav a.active{
+font-weight:bold;
+border-bottom:3px solid blue;
+}
